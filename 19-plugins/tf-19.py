@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-import sys, ConfigParser, imp
+import sys, configparser, imp
 
 def load_plugins():
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     config.read("config.ini")
     words_plugin = config.get("Plugins", "words")
     frequencies_plugin = config.get("Plugins", "frequencies")
@@ -14,5 +14,5 @@ load_plugins()
 word_freqs = tffreqs.top25(tfwords.extract_words(sys.argv[1]))
 
 for (w, c) in word_freqs:
-    print w, ' - ', c
+    print(w, ' - ', c)
 

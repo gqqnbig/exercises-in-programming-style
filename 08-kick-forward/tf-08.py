@@ -36,11 +36,11 @@ def frequencies(word_list, func):
     func(wf, print_text)
 
 def sort(wf, func):
-    func(sorted(wf.iteritems(), key=operator.itemgetter(1), reverse=True), no_op)
+    func(sorted(iter(wf.items()), key=operator.itemgetter(1), reverse=True), no_op)
 
 def print_text(word_freqs, func):
     for (w, c) in word_freqs[0:25]:
-        print w, "-", c
+        print(w, "-", c)
     func(None)
 
 def no_op(func):

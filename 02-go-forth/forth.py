@@ -15,7 +15,7 @@ words    = []          # The input stream of tokens
 def main() :
     while 1 :
         pcode = compile()          # compile/run from user
-        if pcode == None : print; return
+        if pcode == None : print(); return
         execute(pcode)
 
 #============================== Lexical Parsing
@@ -23,7 +23,7 @@ def main() :
 def getWord (prompt="... ") :
     global words
     while not words : 
-        try    : lin = raw_input(prompt)+"\n"
+        try    : lin = input(prompt)+"\n"
         except : return None
         if lin[0:1] == "@" : lin = open(lin[1:-1]).read()
         tokenizeWords(lin)
@@ -56,8 +56,8 @@ def rSwap(cod,p) : a=ds.pop(); b=ds.pop(); ds.append(a); ds.append(b)
 def rDup (cod,p) : ds.append(ds[-1])
 def rDrop(cod,p) : ds.pop()
 def rOver(cod,p) : ds.append(ds[-2])
-def rDump(cod,p) : print "ds = ", ds
-def rDot (cod,p) : print ds.pop()
+def rDump(cod,p) : print("ds = ", ds)
+def rDot (cod,p) : print(ds.pop())
 def rJmp (cod,p) : return cod[p]
 def rJnz (cod,p) : return (cod[p],p+1)[ds.pop()]
 def rJz  (cod,p) : return (p+1,cod[p])[ds.pop()==0]

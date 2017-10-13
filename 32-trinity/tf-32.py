@@ -14,7 +14,7 @@ class WordFrequenciesModel:
             words = re.findall('[a-z]{2,}', open(path_to_file).read().lower())
             self.freqs = collections.Counter(w for w in words if w not in self.stopwords)
         except IOError:
-            print "File not found"
+            print("File not found")
             self.freqs = {}
 
 class WordFrequenciesView:
@@ -22,9 +22,9 @@ class WordFrequenciesView:
         self._model = model
 
     def render(self):
-        sorted_freqs = sorted(self._model.freqs.iteritems(), key=operator.itemgetter(1), reverse=True)
+        sorted_freqs = sorted(iter(self._model.freqs.items()), key=operator.itemgetter(1), reverse=True)
         for (w, c) in sorted_freqs[0:25]:
-            print w, '-', c
+            print(w, '-', c)
 
 class WordFrequencyController:
     def __init__(self, model, view):
@@ -33,7 +33,7 @@ class WordFrequencyController:
 
     def run(self):
         while True:
-            print "Next file: " 
+            print("Next file: ") 
             sys.stdout.flush() 
             filename = sys.stdin.readline().strip()
             self._model.update(filename)

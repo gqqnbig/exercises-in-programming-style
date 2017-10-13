@@ -91,7 +91,7 @@ def frequencies():
 
 def sort():
     # Not in style, left as exercise
-    stack.extend(sorted(stack.pop().iteritems(), key=operator.itemgetter(1)))
+    stack.extend(sorted(iter(stack.pop().items()), key=operator.itemgetter(1)))
 
 # The main function
 #
@@ -104,7 +104,7 @@ stack.append(0)
 # the last word there will be one item left
 while stack[-1] < 25 and len(stack) > 1:
     heap['i'] = stack.pop()
-    (w, f) = stack.pop(); print w, ' - ', f
+    (w, f) = stack.pop(); print(w, ' - ', f)
     stack.append(heap['i']); stack.append(1)
     stack.append(stack.pop() + stack.pop())
 

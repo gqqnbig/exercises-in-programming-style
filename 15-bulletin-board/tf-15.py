@@ -77,9 +77,9 @@ class WordFrequencyCounter:
             self._word_freqs[word] = 1
 
     def print_freqs(self, event):
-        word_freqs = sorted(self._word_freqs.iteritems(), key=operator.itemgetter(1), reverse=True)
+        word_freqs = sorted(iter(self._word_freqs.items()), key=operator.itemgetter(1), reverse=True)
         for (w, c) in word_freqs[0:25]:
-            print w, ' - ', c
+            print(w, ' - ', c)
 
 class WordFrequencyApplication:
     def __init__(self, event_manager):

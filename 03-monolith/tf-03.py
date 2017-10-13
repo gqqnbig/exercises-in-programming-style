@@ -37,7 +37,7 @@ for line in open(sys.argv[1]):
                         word_freqs.append([word, 1])
                     elif len(word_freqs) > 1:
                         # We may need to reorder
-                        for n in reversed(range(pair_index)):
+                        for n in reversed(list(range(pair_index))):
                             if word_freqs[pair_index][1] > word_freqs[n][1]:
                                 # swap
                                 word_freqs[n], word_freqs[pair_index] = word_freqs[pair_index], word_freqs[n]
@@ -47,5 +47,5 @@ for line in open(sys.argv[1]):
         i += 1
 
 for tf in word_freqs[0:25]:
-    print tf[0], ' - ', tf[1]
+    print(tf[0], ' - ', tf[1])
 

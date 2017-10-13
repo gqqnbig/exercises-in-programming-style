@@ -2,7 +2,7 @@
 
 import sys, re, operator, string
 from threading import Thread
-from Queue import Queue
+from queue import Queue
 
 class ActiveWFObject(Thread):
     def __init__(self):
@@ -94,7 +94,7 @@ class WordFrequencyManager(ActiveWFObject):
 
     def _top25(self, message):
         recipient = message[0]
-        freqs_sorted = sorted(self._word_freqs.iteritems(), key=operator.itemgetter(1), reverse=True)
+        freqs_sorted = sorted(iter(self._word_freqs.items()), key=operator.itemgetter(1), reverse=True)
         send(recipient, ['top25', freqs_sorted])
 
 class WordFrequencyController(ActiveWFObject):
@@ -114,7 +114,7 @@ class WordFrequencyController(ActiveWFObject):
     def _display(self, message):
         word_freqs = message[0]
         for (w, f) in word_freqs[0:25]:
-            print w, ' - ', f
+            print(w, ' - ', f)
         send(self._storage_manager, ['die'])
         self._stop = True
 
