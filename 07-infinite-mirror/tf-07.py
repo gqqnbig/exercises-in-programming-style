@@ -29,7 +29,7 @@ def wf_print(wordfreq):
         return
     else:
         (w, c) = wordfreq[0]
-        print w, '-', c
+        print(w, '-', c)
         wf_print(wordfreq[1:])
 
 stop_words = set(open('../stop_words.txt').read().split(','))
@@ -40,5 +40,5 @@ word_freqs = {}
 for i in range(0, len(words), RECURSION_LIMIT):
     count(words[i:i+RECURSION_LIMIT], stop_words, word_freqs)
 
-wf_print(sorted(word_freqs.iteritems(), key=operator.itemgetter(1), reverse=True)[:25])
+wf_print(sorted(iter(word_freqs.items()), key=operator.itemgetter(1), reverse=True)[:25])
 

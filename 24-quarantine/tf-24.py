@@ -19,7 +19,7 @@ class TFQuarantine:
         value = lambda : None
         for func in self._funcs:
             value = func(guard_callable(value))
-        print guard_callable(value)
+        print(guard_callable(value))
 
 #
 # The functions
@@ -57,7 +57,7 @@ def frequencies(word_list):
     return word_freqs
 
 def sort(word_freq):
-    return sorted(word_freq.iteritems(), key=operator.itemgetter(1), reverse=True)
+    return sorted(iter(word_freq.items()), key=operator.itemgetter(1), reverse=True)
 
 def top25_freqs(word_freqs):
     top25 = ""

@@ -31,7 +31,7 @@ def upload_post_handler(args):
         with open(filename) as f:
             for w in [x.lower() for x in re.split("[^a-zA-Z]+", f.read()) if len(x) > 0 and x.lower() not in stops]:
                 word_freqs[w] = word_freqs.get(w, 0) + 1
-        word_freqsl = word_freqs.items()
+        word_freqsl = list(word_freqs.items())
         word_freqsl.sort(lambda x, y: cmp(y[1], x[1]))
         data[filename] = word_freqsl
 
@@ -81,7 +81,7 @@ def handle_request(verb, uri, args):
 
 # A very simple client "browser"
 def render_and_get_input(state_representation, links):
-    print state_representation
+    print(state_representation)
     sys.stdout.flush()
     if type(links) is dict: # many possible next states
         input = sys.stdin.readline().strip()
